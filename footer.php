@@ -63,28 +63,6 @@
     </div>
 </footer>
 
-<!-- Processing Overlay (Global) -->
-<div id="processing-overlay">
-    <div class="loader-container" style="text-align: center;">
-        <div class="main-loader"
-            style="width: 100px; height: 100px; border: 5px solid rgba(184, 134, 11, 0.2); border-top: 5px solid var(--primary-color); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 30px;">
-        </div>
-        <div class="pulse-icon"
-            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); margin-top: -15px;">
-            <i class="fas fa-file-pdf"
-                style="font-size: 2.5rem; color: var(--primary-color); animation: pulse 1.5s infinite;"></i>
-        </div>
-        <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 10px; color: white;">Reading & Converting PDF...
-        </h2>
-        <p id="status-text" style="opacity: 0.8; font-size: 1.1rem; letter-spacing: 1px; color: white;">Analyzing
-            Contract Structure</p>
-        <div class="progress-bar-wrap"
-            style="width: 300px; height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; margin: 30px auto; overflow: hidden;">
-            <div id="progress-fill"
-                style="width: 0%; height: 100%; background: var(--primary-color); transition: width 0.3s ease;"></div>
-        </div>
-    </div>
-</div>
 
 <!-- Scripts -->
 <script src="script.js"></script>

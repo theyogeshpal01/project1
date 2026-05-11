@@ -141,40 +141,6 @@ if (dropZone && fileInput) {
     }
 }
 
-// Global Form Submit Handler for Processing Overlay
-if (uploadForm) {
-    uploadForm.addEventListener('submit', function(e) {
-        const overlay = document.getElementById('processing-overlay');
-        const statusText = document.getElementById('status-text');
-        const progressFill = document.getElementById('progress-fill');
-        
-        if (overlay) {
-            overlay.style.display = 'flex';
-            
-            const statuses = [
-                'Initializing Secure Parser...',
-                'Reading PDF Binary Data...',
-                'Analyzing Contract Structure...',
-                'Extracting Organisation Details...',
-                'Identifying Financial Approvals...',
-                'Parsing Service Provider Info...',
-                'Generating Professional Sheets...',
-                'Finalizing Excel Workbook...'
-            ];
-            
-            let i = 0;
-            const interval = setInterval(() => {
-                if (i < statuses.length) {
-                    if (statusText) statusText.textContent = statuses[i];
-                    if (progressFill) progressFill.style.width = ((i + 1) / statuses.length * 100) + '%';
-                    i++;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 800);
-        }
-    });
-}
 
 // Smooth scroll for nav links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
