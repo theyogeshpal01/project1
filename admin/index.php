@@ -13,6 +13,13 @@ $total = count($submissions);
 $new = 0;
 foreach($submissions as $s) if($s['status'] == 'new') $new++;
 
+$uploads_file = '../uploads.json';
+$uploads_count = 0;
+if (file_exists($uploads_file)) {
+    $history = json_decode(file_get_contents($uploads_file), true);
+    if (is_array($history)) $uploads_count = count($history);
+}
+
 ob_start();
 ?>
 
@@ -37,11 +44,20 @@ ob_start();
     </div>
     <div class="card">
         <div>
+            <p style="color: #888; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 5px;">PDF Uploads</p>
+            <h3 style="font-size: 2rem; margin: 0;"><?php echo $uploads_count; ?></h3>
+        </div>
+        <div class="card-icon" style="background: #e8f5e9; color: #43a047;">
+            <i class="fas fa-file-pdf"></i>
+        </div>
+    </div>
+    <div class="card">
+        <div>
             <p style="color: #888; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 5px;">Conversion Rate</p>
             <h3 style="font-size: 2rem; margin: 0;">100%</h3>
         </div>
-        <div class="card-icon" style="background: #e8f5e9; color: #43a047;">
-            <i class="fas fa-chart-line"></i>
+        <div class="card-icon" style="background: #f3e5f5; color: #7b1fa2;">
+            <i class="fas fa-magic"></i>
         </div>
     </div>
 </div>

@@ -5,22 +5,9 @@ $pageDesc = "Upload multiple PDF contracts and convert them into separate Excel 
 ob_start();
 ?>
     <style>
-        :root {
-            --primary-color: #B8860B;
-            --primary-light: #D4AF37;
-            --secondary-color: #0B132B;
-            --text-color: #333333;
-            --text-light: #666666;
-            --bg-color: #FFFFFF;
-            --card-bg: #F8F9FA;
-            --white: #FFFFFF;
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-
         /* Hero Section */
         .upload-hero {
-            background: linear-gradient(135deg, #0B132B 0%, #1c2a4d 100%);
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #1c2a4d 100%);
             padding: 100px 0 80px;
             text-align: center;
             color: white;
@@ -45,33 +32,34 @@ ob_start();
         /* Upload Section */
         .upload-container {
             padding: 80px 0;
-            background: #fff;
+            background: var(--bg-color);
         }
 
         .upload-card {
-            background: #fff;
+            background: var(--card-bg);
             max-width: 800px;
             margin: -60px auto 60px;
             padding: 50px;
             border-radius: 20px;
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow);
             position: relative;
             z-index: 10;
+            border: 1px solid var(--glass-border);
         }
 
         .drop-zone {
-            border: 2px dashed #cbd5e0;
+            border: 2px dashed var(--primary-color);
             border-radius: 15px;
             padding: 60px 40px;
             text-align: center;
             transition: var(--transition);
             cursor: pointer;
-            background: #fff;
+            background: var(--bg-color);
         }
 
         .drop-zone:hover, .drop-zone.dragover {
             border-color: var(--primary-color);
-            background: rgba(184, 134, 11, 0.02);
+            background: rgba(184, 134, 11, 0.05);
         }
 
         .upload-icon {
@@ -79,7 +67,7 @@ ob_start();
             color: var(--primary-light);
             margin-bottom: 25px;
             display: block;
-            background: #fdf5e6;
+            background: rgba(184, 134, 11, 0.1);
             width: 100px;
             height: 100px;
             line-height: 100px;
@@ -90,14 +78,14 @@ ob_start();
 
         .drop-zone h3 {
             font-size: 1.8rem;
-            color: #0B132B;
+            color: var(--text-color);
             margin-bottom: 10px;
             font-weight: 700;
         }
 
         .drop-zone p {
             font-size: 1.1rem;
-            color: #718096;
+            color: var(--text-light);
             margin-bottom: 5px;
         }
 
@@ -119,8 +107,8 @@ ob_start();
         }
 
         .btn-convert {
-            background: #e9d8b8; /* Matching the muted orange/gold in screenshot */
-            color: #8c6d31;
+            background: var(--primary-color);
+            color: white;
             padding: 15px 50px;
             border-radius: 8px;
             font-weight: 700;
@@ -128,27 +116,27 @@ ob_start();
             border: none;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .btn-convert:hover {
-            background: var(--primary-color);
-            color: white;
+            background: var(--primary-light);
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
 
         /* Features Section */
         .features-strip {
-            background: #f7fafc;
+            background: var(--card-bg);
             padding: 30px 0;
             border-radius: 10px;
             margin-bottom: 60px;
+            border: 1px solid var(--glass-border);
         }
 
         .features-strip h4 {
             text-align: center;
-            color: #0B132B;
+            color: var(--text-color);
             margin-bottom: 25px;
             font-size: 1.25rem;
             font-weight: 700;
@@ -166,7 +154,7 @@ ob_start();
             align-items: center;
             gap: 10px;
             font-size: 0.95rem;
-            color: #4a5568;
+            color: var(--text-color);
             font-weight: 500;
         }
 
@@ -187,11 +175,13 @@ ob_start();
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px;
-            background: #f9fafb;
-            margin-bottom: 5px;
-            border-radius: 5px;
-            border-left: 3px solid var(--primary-color);
+            padding: 12px 15px;
+            background: var(--bg-color);
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            border-left: 4px solid var(--primary-color);
+            color: var(--text-color);
         }
 
         @media (max-width: 768px) {
@@ -204,6 +194,22 @@ ob_start();
                 margin: -40px 20px 40px;
             }
         }
+
+        /* Processing Overlay Styles */
+        #processing-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 19, 43, 0.9);
+            z-index: 9999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.7; } 100% { transform: scale(1); opacity: 1; } }
     </style>
 <?php 
 $extraStyles = ob_get_clean();

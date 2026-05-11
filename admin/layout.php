@@ -305,6 +305,10 @@ function render_admin_layout($content, $page_title = 'Dashboard')
                     <i class="fas fa-envelope"></i>
                     <span>Submissions</span>
                 </a>
+                <a href="uploads.php" class="menu-item <?php echo ($current_page == 'uploads.php') ? 'active' : ''; ?>">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>Upload History</span>
+                </a>
                 <a href="settings.php" class="menu-item <?php echo ($current_page == 'settings.php') ? 'active' : ''; ?>">
                     <i class="fas fa-cog"></i>
                     <span>Settings</span>

@@ -5,24 +5,9 @@ $pageDesc = "Learn more about LASA Consultants & Organisation, our expertise, an
 ob_start();
 ?>
     <style>
-        :root {
-            --primary-color: #B8860B;
-            --primary-light: #D4AF37;
-            --secondary-color: #0B132B;
-            --text-color: #333333;
-            --text-light: #666666;
-            --bg-color: #FFFFFF;
-            --card-bg: #F8F9FA;
-            --white: #FFFFFF;
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
         /* Premium About Page Styles */
         .about-hero {
-            background: linear-gradient(135deg, #0B132B 0%, #1c2a4d 100%);
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #1c2a4d 100%);
             padding: 120px 0 100px;
             text-align: center;
             color: white;
@@ -68,7 +53,7 @@ ob_start();
 
         .content-section {
             padding: 100px 0;
-            background: #fff;
+            background: var(--bg-color);
         }
 
         .content-block {
@@ -85,7 +70,7 @@ ob_start();
 
         .content-block h2 {
             font-size: 2.2rem;
-            color: #0B132B;
+            color: var(--primary-color);
             margin-bottom: 30px;
             font-weight: 700;
             position: relative;
@@ -103,7 +88,7 @@ ob_start();
         }
 
         .content-text {
-            color: #444;
+            color: var(--text-color);
             line-height: 1.9;
             font-size: 1.05rem;
         }
@@ -125,18 +110,19 @@ ob_start();
             gap: 15px;
             margin-bottom: 15px;
             font-size: 1.05rem;
-            color: #444;
+            color: var(--text-color);
             padding: 15px;
-            background: #f9f9f9;
+            background: var(--card-bg);
             border-radius: 10px;
             transition: var(--transition);
+            border: 1px solid var(--glass-border);
             border-left: 4px solid transparent;
         }
 
         .check-item:hover {
             transform: translateX(10px);
-            background: #fff;
-            box-shadow: var(--shadow-sm);
+            background: var(--bg-color);
+            box-shadow: var(--shadow);
             border-left-color: var(--primary-color);
         }
 
@@ -158,14 +144,14 @@ ob_start();
         }
 
         .practice-card {
-            background: #fcfcfc;
+            background: var(--card-bg);
             padding: 30px;
             border-radius: 12px;
             text-align: center;
             font-weight: 600;
-            color: #0B132B;
+            color: var(--text-color);
             transition: var(--transition);
-            border: 1px solid #eee;
+            border: 1px solid var(--glass-border);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -175,10 +161,10 @@ ob_start();
         }
 
         .practice-card:hover {
-            background: #0B132B;
+            background: var(--secondary-color);
             color: #fff;
-            border-color: #0B132B;
-            box-shadow: var(--shadow-lg);
+            border-color: var(--secondary-color);
+            box-shadow: var(--shadow);
             transform: translateY(-8px) scale(1.02);
         }
 

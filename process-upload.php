@@ -10,6 +10,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['pdfs'])) {
     // In a real app, you would use a library like Spatie/PdfToText or similar
     // for actual conversion. Here we simulate the process.
     
+    // Ensure uploads directory exists
+    if (!is_dir('uploads')) {
+        mkdir('uploads', 0777, true);
+    }
+    
+    $history_file = 'uploads.json';
+    $history_data = [];
+    if (file_exists($history_file)) {
+        $history_data = json_decode(file_get_contents($history_file), true) ?: [];
+    }
+
     for ($i = 0; $i < count($files['name']); $i++) {
         if ($files['error'][$i] === 0) {
             $tmp_name = $files['tmp_name'][$i];
@@ -19,9 +30,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['pdfs'])) {
             
             if (move_uploaded_file($tmp_name, $destination)) {
                 $uploaded_files[] = $unique_name;
+                
+                // Add to history
+                $history_data[] = [
+                    'id' => time() . "_" . $i,
+                    'filename' => $unique_name,
+                    'original_name' => $original_name,
+                    'date' => date('Y-m-d H:i:s'),
+                    'status' => 'converted'
+                ];
             }
         }
     }
+    
+    // Save history
+    file_put_contents($history_file, json_encode($history_data, JSON_PRETTY_PRINT));
 
     echo "<!DOCTYPE html>
     <html lang='en'>

@@ -63,54 +63,117 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 const dropZone = document.getElementById('drop-zone');
 const fileInput = document.getElementById('file-input');
 const fileList = document.getElementById('file-list');
+const uploadForm = document.getElementById('upload-form');
 
-dropZone.addEventListener('click', () => fileInput.click());
+if (dropZone && fileInput) {
+    // Click to select
+    dropZone.addEventListener('click', () => fileInput.click());
 
-dropZone.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    dropZone.style.background = 'rgba(184, 134, 11, 0.1)';
-});
+    // Drag and drop handlers
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        }, false);
+    });
 
-dropZone.addEventListener('dragleave', () => {
-    dropZone.style.background = 'transparent';
-});
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, () => {
+            dropZone.classList.add('dragover');
+            dropZone.classList.add('drag-over'); // for compatibility with index.php
+        }, false);
+    });
 
-dropZone.addEventListener('drop', (e) => {
-    e.preventDefault();
-    dropZone.style.background = 'transparent';
-    const files = e.dataTransfer.files;
-    handleFiles(files);
-});
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, () => {
+            dropZone.classList.remove('dragover');
+            dropZone.classList.remove('drag-over');
+        }, false);
+    });
 
-fileInput.addEventListener('change', (e) => {
-    handleFiles(e.target.files);
-});
+    dropZone.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        fileInput.files = files;
+        updateFileList(files);
+    }, false);
 
-function handleFiles(files) {
-    fileList.innerHTML = '';
-    if (files.length > 0) {
-        const title = document.createElement('p');
-        title.innerHTML = '<strong>Selected Files:</strong>';
-        title.style.marginBottom = '10px';
-        fileList.appendChild(title);
+    fileInput.addEventListener('change', function() {
+        updateFileList(this.files);
+    });
+
+    function updateFileList(files) {
+        if (!fileList) return;
+        fileList.innerHTML = '';
         
-        Array.from(files).forEach(file => {
-            if (file.type === 'application/pdf') {
-                const item = document.createElement('div');
-                item.style.display = 'flex';
-                item.style.alignItems = 'center';
-                item.style.gap = '10px';
-                item.style.marginBottom = '5px';
-                item.style.padding = '5px 10px';
-                item.style.background = 'rgba(0,0,0,0.05)';
-                item.style.borderRadius = '5px';
-                item.innerHTML = `<i class="fas fa-file-pdf" style="color: #e74c3c;"></i> <span>${file.name}</span>`;
-                fileList.appendChild(item);
-            } else {
-                alert(`${file.name} is not a PDF file.`);
-            }
-        });
+        if (files.length > 0) {
+            // Style the drop zone to show files are selected
+            dropZone.style.borderColor = 'var(--primary-color)';
+            
+            Array.from(files).forEach((file, index) => {
+                if (file.type === 'application/pdf') {
+                    const item = document.createElement('div');
+                    item.className = 'file-entry file-item'; // compatibility for both pages
+                    item.style.display = 'flex';
+                    item.style.alignItems = 'center';
+                    item.style.justifyContent = 'space-between';
+                    item.style.gap = '15px';
+                    item.style.padding = '12px 15px';
+                    item.style.background = 'var(--bg-color)';
+                    item.style.borderRadius = '8px';
+                    item.style.marginBottom = '10px';
+                    item.style.border = '1px solid var(--glass-border)';
+                    item.style.borderLeft = '4px solid var(--primary-color)';
+                    
+                    item.innerHTML = `
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-file-pdf" style="color: #e74c3c;"></i>
+                            <span style="font-weight: 600; font-size: 0.9rem; color: var(--text-color);">${file.name}</span>
+                        </div>
+                        <small style="color: var(--text-light);">${(file.size / 1024).toFixed(1)} KB</small>
+                    `;
+                    fileList.appendChild(item);
+                } else {
+                    alert(`${file.name} is not a PDF file.`);
+                }
+            });
+        }
     }
+}
+
+// Global Form Submit Handler for Processing Overlay
+if (uploadForm) {
+    uploadForm.addEventListener('submit', function(e) {
+        const overlay = document.getElementById('processing-overlay');
+        const statusText = document.getElementById('status-text');
+        const progressFill = document.getElementById('progress-fill');
+        
+        if (overlay) {
+            overlay.style.display = 'flex';
+            
+            const statuses = [
+                'Initializing Secure Parser...',
+                'Reading PDF Binary Data...',
+                'Analyzing Contract Structure...',
+                'Extracting Organisation Details...',
+                'Identifying Financial Approvals...',
+                'Parsing Service Provider Info...',
+                'Generating Professional Sheets...',
+                'Finalizing Excel Workbook...'
+            ];
+            
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < statuses.length) {
+                    if (statusText) statusText.textContent = statuses[i];
+                    if (progressFill) progressFill.style.width = ((i + 1) / statuses.length * 100) + '%';
+                    i++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 800);
+        }
+    });
 }
 
 // Smooth scroll for nav links
