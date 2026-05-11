@@ -20,11 +20,12 @@
             <div class="footer-grid">
                 <div class="footer-logo">
                     <img src="lasa_logo_1778423166023.png" alt="LASA Logo">
-                    <p style="opacity: 0.7; font-size: 0.9rem;">Lasa Consultants & Organisations</p>
-                    <p style="opacity: 0.7; font-size: 0.8rem; margin-top: 10px;">lasainfra@hotmail.com</p>
+                    <p style="opacity: 0.7; font-size: 0.9rem;"><?php echo $_ENV['APP_NAME'] ?? 'Lasa Consultants & Organisations'; ?></p>
+                    <p style="opacity: 0.7; font-size: 0.8rem; margin-top: 10px;"><?php echo $_ENV['ADMIN_EMAIL'] ?? 'lasainfra@hotmail.com'; ?></p>
                     <p style="opacity: 0.7; font-size: 0.8rem;">+91-9694919394</p>
                     <p style="opacity: 0.7; font-size: 0.8rem;">Jaipur, Rajasthan - 302026</p>
                 </div>
+
                 <div class="footer-links">
                     <h4>QUICK LINKS</h4>
                     <ul>
@@ -52,8 +53,9 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <?php echo date('Y'); ?> Lasa Consultants & Organizations. All rights reserved.</p>
+                <p>&copy; <?php echo date('Y'); ?> <?php echo $_ENV['APP_NAME'] ?? 'Lasa Consultants & Organizations'; ?>. All rights reserved.</p>
             </div>
+
         </div>
     </footer>
 

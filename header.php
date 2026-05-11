@@ -12,8 +12,9 @@ if (file_exists(__DIR__ . '/.env')) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo isset($pageTitle) ? $pageTitle : 'LASA Consultants & Organisation'; ?></title>
+    <title><?php echo isset($pageTitle) ? $pageTitle : ($_ENV['APP_NAME'] ?? 'LASA Consultants & Organisation'); ?></title>
     <meta name="description" content="<?php echo isset($pageDesc) ? $pageDesc : 'Integrated Legal, Business, Strategic, Healthcare, Environmental & Skill Development Advisory.'; ?>">
+
     
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
