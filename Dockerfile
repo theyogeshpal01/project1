@@ -30,7 +30,9 @@ COPY . /var/www/html/
 # 7. Enable Apache rewrite (fixes potential 404 errors)
 RUN a2enmod rewrite
 
-# 8. Set permissions
-RUN chown -R www-data:www-data /var/www/html
+# 8. Create uploads directory and set permissions
+RUN mkdir -p /var/www/html/uploads && \
+    chown -R www-data:www-data /var/www/html && \
+    chmod -R 775 /var/www/html/uploads
 
 EXPOSE 80
