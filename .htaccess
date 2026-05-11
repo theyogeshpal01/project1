@@ -1,0 +1,11 @@
+# Block access to sensitive files
+<FilesMatch "^\.env|contacts\.json|\.gitignore|composer\.(json|lock)$">
+    Require all denied
+</FilesMatch>
+
+# Disable directory browsing
+Options -Indexes
+
+# Custom Error Pages
+ErrorDocument 403 "/New folder1/index.php"
+
