@@ -5,24 +5,9 @@ $pageDesc = "Bridging the gap between education and industry requirements with s
 ob_start();
 ?>
     <style>
-        :root {
-            --primary-color: #B8860B;
-            --primary-light: #D4AF37;
-            --secondary-color: #0B132B;
-            --text-color: #333333;
-            --text-light: #666666;
-            --bg-color: #FFFFFF;
-            --card-bg: #F8F9FA;
-            --white: #FFFFFF;
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
         /* Hero Section */
         .academy-hero {
-            background: linear-gradient(135deg, #0B132B 0%, #1c2a4d 100%);
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #1c2a4d 100%);
             padding: 120px 0 100px;
             text-align: center;
             color: white;
@@ -48,7 +33,7 @@ ob_start();
         /* Overview Section */
         .academy-section {
             padding: 80px 0;
-            background: #fff;
+            background: var(--bg-color);
         }
 
         .section-header {
@@ -57,13 +42,13 @@ ob_start();
 
         .section-header h2 {
             font-size: 2.2rem;
-            color: #0B132B;
+            color: var(--primary-color);
             margin-bottom: 20px;
             font-weight: 700;
         }
 
         .section-header p {
-            color: #666;
+            color: var(--text-light);
             max-width: 900px;
             line-height: 1.8;
             font-size: 1.05rem;
@@ -77,18 +62,18 @@ ob_start();
         }
 
         .overview-card {
-            background: #fff;
+            background: var(--card-bg);
             padding: 30px 20px;
             border-radius: 12px;
             text-align: center;
-            border: 1px solid #eee;
+            border: 1px solid var(--glass-border);
             transition: var(--transition);
         }
 
         .overview-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--primary-light);
+            box-shadow: var(--shadow);
+            border-color: var(--primary-color);
         }
 
         .overview-card i {
@@ -101,7 +86,7 @@ ob_start();
         .overview-card span {
             font-size: 0.9rem;
             font-weight: 600;
-            color: #444;
+            color: var(--text-color);
             line-height: 1.4;
         }
 
@@ -114,10 +99,10 @@ ob_start();
         }
 
         .program-card {
-            background: #fff;
+            background: var(--card-bg);
             padding: 35px;
             border-radius: 15px;
-            border: 1px solid #f0f0f0;
+            border: 1px solid var(--glass-border);
             display: flex;
             align-items: center;
             gap: 20px;
@@ -127,7 +112,7 @@ ob_start();
 
         .program-card:hover {
             border-color: var(--primary-color);
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow);
         }
 
         .program-card i {
@@ -138,7 +123,7 @@ ob_start();
 
         .program-card h4 {
             font-size: 1.15rem;
-            color: #0B132B;
+            color: var(--text-color);
             font-weight: 700;
             margin-bottom: 10px;
         }
@@ -147,13 +132,13 @@ ob_start();
             list-style: none;
             padding: 0;
             margin-top: 15px;
-            border-top: 1px solid #f0f0f0;
+            border-top: 1px solid var(--glass-border);
             padding-top: 15px;
         }
 
         .sub-list li {
             font-size: 0.9rem;
-            color: #555;
+            color: var(--text-light);
             padding: 4px 0;
             position: relative;
             padding-left: 18px;
@@ -169,28 +154,28 @@ ob_start();
 
         /* Placement Section */
         .placement-box {
-            background: #f0f7ff;
+            background: var(--card-bg);
             border-radius: 20px;
             padding: 50px;
-            border: 1px solid rgba(0, 102, 255, 0.1);
+            border: 1px solid var(--glass-border);
         }
 
         .placement-box h2 {
             font-size: 2.2rem;
-            color: #0B132B;
+            color: var(--primary-color);
             margin-bottom: 10px;
         }
 
         .placement-box .note {
             font-style: italic;
-            color: #777;
+            color: var(--text-light);
             font-size: 0.9rem;
             margin-bottom: 30px;
             display: block;
         }
 
         .btn-apply {
-            background: #B8860B;
+            background: var(--primary-color);
             color: white;
             padding: 12px 30px;
             border-radius: 8px;
@@ -202,13 +187,13 @@ ob_start();
         }
 
         .btn-apply:hover {
-            background: #8c6d31;
+            background: var(--primary-light);
             transform: translateY(-2px);
         }
 
         .opportunities h4 {
             font-size: 1.2rem;
-            color: #0B132B;
+            color: var(--text-color);
             margin-bottom: 25px;
             font-weight: 700;
         }
@@ -224,7 +209,7 @@ ob_start();
             align-items: flex-start;
             gap: 12px;
             font-size: 0.95rem;
-            color: #555;
+            color: var(--text-color);
             margin-bottom: 15px;
         }
 

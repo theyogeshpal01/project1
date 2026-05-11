@@ -5,24 +5,9 @@ $pageDesc = "Expert perspectives on law, business, governance, and compliance.";
 ob_start();
 ?>
     <style>
-        :root {
-            --primary-color: #B8860B;
-            --primary-light: #D4AF37;
-            --secondary-color: #0B132B;
-            --text-color: #333333;
-            --text-light: #666666;
-            --bg-color: #FFFFFF;
-            --card-bg: #F8F9FA;
-            --white: #FFFFFF;
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
         /* Hero Section */
         .insights-hero {
-            background: linear-gradient(135deg, #0B132B 0%, #1c2a4d 100%);
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #1c2a4d 100%);
             padding: 100px 0 80px;
             text-align: center;
             color: white;
@@ -54,7 +39,7 @@ ob_start();
         /* Blog Grid */
         .blog-section {
             padding: 80px 0;
-            background: #fdfdfd;
+            background: var(--bg-color);
         }
 
         .blog-grid {
@@ -64,19 +49,19 @@ ob_start();
         }
 
         .blog-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--shadow-sm);
             transition: var(--transition);
-            border: 1px solid #eee;
+            border: 1px solid var(--glass-border);
             display: flex;
             flex-direction: column;
         }
 
         .blog-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow);
         }
 
         .blog-image {
@@ -110,7 +95,7 @@ ob_start();
 
         .blog-tag {
             font-size: 0.75rem;
-            color: #888;
+            color: var(--text-light);
             font-weight: 600;
             text-transform: uppercase;
         }
@@ -126,14 +111,15 @@ ob_start();
 
         .read-time {
             font-size: 0.75rem;
-            color: #aaa;
+            color: var(--text-light);
             margin-bottom: 15px;
             display: block;
+            opacity: 0.7;
         }
 
         .blog-card h3 {
             font-size: 1.3rem;
-            color: #0B132B;
+            color: var(--text-color);
             margin-bottom: 15px;
             line-height: 1.4;
             font-weight: 700;
@@ -141,7 +127,7 @@ ob_start();
 
         .blog-card p {
             font-size: 0.95rem;
-            color: #666;
+            color: var(--text-light);
             line-height: 1.6;
             margin-bottom: 20px;
         }
@@ -151,7 +137,7 @@ ob_start();
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid #f5f5f5;
+            border-top: 1px solid var(--glass-border);
             padding-top: 15px;
         }
 
@@ -166,7 +152,8 @@ ob_start();
 
         .view-count {
             font-size: 0.75rem;
-            color: #aaa;
+            color: var(--text-light);
+            opacity: 0.6;
         }
 
         @media (max-width: 992px) {

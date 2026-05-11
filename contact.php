@@ -5,19 +5,9 @@ $pageDesc = "Get in touch with LASA Consultants & Organisation for integrated le
 ob_start();
 ?>
     <style>
-        :root {
-            --primary-color: #B8860B;
-            --primary-light: #D4AF37;
-            --secondary-color: #0B132B;
-            --form-bg: #0B132B; /* Dark navy for form card */
-            --submit-btn: #C1E1A6; /* Lime green from screenshot */
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
         /* Hero Section */
         .contact-hero {
-            background: linear-gradient(135deg, #0B132B 0%, #1c2a4d 100%);
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #1c2a4d 100%);
             padding: 100px 0 80px;
             text-align: center;
             color: white;
@@ -49,7 +39,7 @@ ob_start();
         /* Contact Content */
         .contact-section {
             padding: 100px 0;
-            background: #fff;
+            background: var(--bg-color);
         }
 
         .contact-layout {
@@ -61,13 +51,13 @@ ob_start();
 
         .reach-out h2 {
             font-size: 2.2rem;
-            color: #0B132B;
+            color: var(--primary-color);
             margin-bottom: 25px;
             font-weight: 700;
         }
 
         .reach-out p {
-            color: #555;
+            color: var(--text-color);
             line-height: 1.8;
             margin-bottom: 40px;
             font-size: 1.05rem;
@@ -75,7 +65,7 @@ ob_start();
 
         .info-block h3 {
             font-size: 1.2rem;
-            color: #0B132B;
+            color: var(--text-color);
             margin-bottom: 20px;
             font-weight: 700;
         }
@@ -87,7 +77,7 @@ ob_start();
         .info-item strong {
             display: block;
             font-size: 0.9rem;
-            color: #888;
+            color: var(--text-light);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 5px;
@@ -100,26 +90,28 @@ ob_start();
         }
 
         .info-item .address {
-            color: #555;
+            color: var(--text-color);
             font-weight: 500;
         }
 
         /* Contact Form Card */
         .contact-card {
-            background: var(--form-bg);
+            background: var(--secondary-color);
             padding: 50px;
             border-radius: 15px;
             color: white;
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow);
             margin-top: -120px; /* Overlap with hero */
             position: relative;
             z-index: 10;
+            border: 1px solid var(--glass-border);
         }
 
         .contact-card h3 {
             font-size: 1.8rem;
             margin-bottom: 35px;
             font-weight: 700;
+            color: white;
         }
 
         .form-group {
@@ -131,6 +123,7 @@ ob_start();
             font-size: 0.85rem;
             opacity: 0.7;
             margin-bottom: 8px;
+            color: white;
         }
 
         .form-group input, .form-group textarea {
@@ -152,8 +145,8 @@ ob_start();
 
         .btn-send {
             width: 100%;
-            background: var(--submit-btn);
-            color: #0B132B;
+            background: var(--primary-color);
+            color: white;
             border: none;
             padding: 15px;
             border-radius: 5px;
@@ -169,7 +162,7 @@ ob_start();
         .btn-send:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            filter: brightness(1.1);
+            background: var(--primary-light);
         }
 
         @media (max-width: 992px) {

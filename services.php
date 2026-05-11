@@ -5,25 +5,9 @@ $pageDesc = "Explore our specialized advisory services in Legal, Election Manage
 ob_start();
 ?>
     <style>
-        :root {
-            --primary-color: #B8860B;
-            --primary-light: #D4AF37;
-            --secondary-color: #0B132B;
-            --text-color: #333333;
-            --text-light: #666666;
-            --bg-color: #FFFFFF;
-            --card-bg: #F8F9FA;
-            --white: #FFFFFF;
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            --service-box-bg: #F0F7FF;
-        }
-
         /* Hero Section */
         .services-hero {
-            background: linear-gradient(135deg, #0B132B 0%, #1c2a4d 100%);
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #1c2a4d 100%);
             padding: 120px 0 100px;
             text-align: center;
             color: white;
@@ -56,7 +40,7 @@ ob_start();
         /* Service Sections */
         .service-container {
             padding: 80px 0;
-            background: #fff;
+            background: var(--bg-color);
         }
 
         .service-block {
@@ -77,22 +61,23 @@ ob_start();
 
         .service-header h2 {
             font-size: 2.2rem;
-            color: #0B132B;
+            color: var(--primary-color);
             margin-bottom: 10px;
             font-weight: 700;
         }
 
         .service-header h3 {
             font-size: 1.1rem;
-            color: var(--primary-color);
+            color: var(--text-color);
             margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            opacity: 0.8;
         }
 
         .service-note {
             font-style: italic;
-            color: #777;
+            color: var(--text-light);
             font-size: 0.9rem;
             margin-bottom: 25px;
         }
@@ -104,37 +89,37 @@ ob_start();
         }
 
         .elections-covered {
-            background: #f9f9f9;
+            background: var(--card-bg);
             padding: 25px;
             border-radius: 12px;
             margin-bottom: 30px;
-            border: 1px solid #eee;
+            border: 1px solid var(--glass-border);
         }
 
         .elections-covered h4 {
-            color: #0B132B;
+            color: var(--text-color);
             margin-bottom: 15px;
             font-size: 1.2rem;
         }
 
         .elections-covered p {
-            color: #555;
+            color: var(--text-light);
             font-size: 0.95rem;
             line-height: 1.7;
         }
 
         /* Key Services Box */
         .key-services-box {
-            background: var(--service-box-bg);
+            background: var(--card-bg);
             border-radius: 15px;
             padding: 40px;
-            border: 1px solid rgba(0, 102, 255, 0.1);
+            border: 1px solid var(--glass-border);
             position: relative;
         }
 
         .key-services-box h4 {
             font-size: 1.2rem;
-            color: #0044cc;
+            color: var(--primary-color);
             margin-bottom: 25px;
             font-weight: 700;
             display: flex;
@@ -161,7 +146,7 @@ ob_start();
             align-items: flex-start;
             gap: 12px;
             font-size: 0.95rem;
-            color: #444;
+            color: var(--text-color);
             line-height: 1.5;
         }
 
@@ -177,7 +162,7 @@ ob_start();
         .sectors-info {
             margin-bottom: 25px;
             font-size: 1rem;
-            color: #555;
+            color: var(--text-color);
         }
 
         .sectors-info strong {
